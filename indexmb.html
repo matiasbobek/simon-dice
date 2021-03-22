@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-grid.min.css">
+    
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
     <title>Simon dice</title>
+
 </head>
 
 <body>
     <div class="container">
         <div class="row">
           <div class="col-sm-8">
-            One of three columns
+            <div class="alert alert-primary" role="alert">
+                Tocá empezar para jugar!
+            </div>
+          </div>
+          <div id="turno" class="col-sm-2">
+            Turno: -
           </div>
           <div class="col-sm-2">
-            One of three columns
-          </div>
-          <div class="col-sm-2">
-            One of three columns
+            <button id="boton-empezar" type="button" class="btn btn-primary">Empezar</button>
           </div>
         </div>
       </div>
