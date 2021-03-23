@@ -27,7 +27,7 @@ function mostrarEstadoJuego(esQuePerdio){
     } else if (esTurnoJugador){
 
         $estado.textContent = "Es tu turno"
-    } else if (!esTurnoJugador){
+    } else {
         $estado.textContent = "Es turno de la máquina"
     }
 }
