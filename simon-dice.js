@@ -39,7 +39,7 @@ let secuenciaJugador = [];
 let secuenciaMaquina = [];
 
 $botonEmpezar.onclick = function(){
-    mostrarTurnoMaquina();
+    administrarTurnoMaquina();
     $botonEmpezar.disabled = true;
     //probablemente deshabilitar botones 
 }
@@ -60,14 +60,28 @@ function mostrarEstadoJuego(esQuePerdio){
     }
 }
 
-function mostrarTurnoMaquina(){
+function administrarTurnoMaquina(){
+
+    bloquearCuadros();
     turno++;
+    esTurnoJugador=false;
     mostrarEstadoJuego();
     mostrarNumeroTurno();
+
     const cuadroAleatorio = elegirCuadradoAleatorio();
     secuenciaMaquina.push(cuadroAleatorio);
-    resaltarCuadro(cuadroAleatorio);   
-    habilitarTurnoJugador();
+
+    for (let i = 0; i < turno; i++){
+        setTimeout(function(){
+            resaltarCuadro(secuenciaMaquina[i]);   
+        }, i*1000);
+    }
+
+
+    setTimeout(function(){
+        administrarTurnoJugador();
+    }, 1000*turno);
+
 }
 
 function elegirCuadradoAleatorio(){
@@ -80,19 +94,53 @@ function resaltarCuadro($cuadro){
     $cuadro.style.opacity = "50%";
     setTimeout(function(){
         $cuadro.style.opacity = "100%";
-    },1000)
+    },900)
 }
 
-function habilitarTurnoJugador(){
-    //alertar el cuadro que clickea
+function administrarTurnoJugador (){
+    secuenciaJugador=[]
+    contadorClicks = 0;
+    esTurnoJugador=true;
 
+    mostrarEstadoJuego();
+    mostrarNumeroTurno();
+    
+    const $cuadros = document.querySelectorAll('[name=cuadros]');
+    
+    $cuadros.forEach(function($cuadro){
+        $cuadro.onclick=function(){
+            contadorClicks++;
+            resaltarCuadro($cuadro);
+            secuenciaJugador.push($cuadro);
+
+            for(let i = 0; i<contadorClicks; i++){
+                if (secuenciaJugador[i] !== secuenciaMaquina[i]) {
+                    perder();
+                    return;
+                  } 
+            }
+
+            if (secuenciaJugador.length === secuenciaMaquina.length){
+                setTimeout(function(){
+                    administrarTurnoMaquina();
+                }, 1000);
+            } 
+
+        }
+    }) 
 }
 
-function habilitarClickearCuadro (){
+function perder(){
+    mostrarEstadoJuego(true);   
+    bloquearCuadros();
+}
+
+function bloquearCuadros(){
+
     const $cuadros = document.querySelectorAll('[name=cuadros]');
     $cuadros.forEach(function($cuadro){
         $cuadro.onclick=function(){
-            alert("me clicearon")
+
         }
-    })
+    }) 
 }
