@@ -1,5 +1,5 @@
 # simon-dice
-Ejemplo de juego simon dice para r/Argentina programa
+Ejemplo de juego Simon Dice reconstruido desde cero partiendo del ejemplo del repositorio "forkiado" de r/Argentina programa
 
 ## Instalación
 
