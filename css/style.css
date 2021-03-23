@@ -1,17 +1,21 @@
 #cuadro-1{
     background-color: blue;
     height: 300px;
+    transition: opacity 150ms
 }
 #cuadro-2{
     background-color: red;
     height: 300px;
+    transition: opacity 150ms
 }
 #cuadro-3{
     background-color: yellow;
     height: 300px;
+    transition: opacity 150ms
 }
 #cuadro-4{
     background-color: green;
     height: 300px;
+    transition: opacity 150ms;
 }
 
