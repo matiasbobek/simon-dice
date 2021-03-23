@@ -1,36 +1,4 @@
-/*
-to do
 
-Boton empezar
-
-MostrarEstadoJuego (div 1)
-    Es el turno de la máquina
-    Es tu turno
-    Perdist luego de x turnos.
-
-MostrarTurnoMaquina 
-    Turno = N
-    Aclarar N cuadros 
-    MostrarTurnoJugador();
-
-
-TurnoJugador(N){
-    HabilitarCuadros()
-    cuadro.click =function(){
-        secuencia.push = cuadro
-    }
-
-    if secuenciaJugador[i] !== secuenciaMaquina[i]{
-        MostrarPerdiste();
-    }
-    if secuenciaJugador.lenght = secuenciaMaquina.lenght{
-        if secuenciaJugador === secuenciaMaquina{
-            MostrarTurnoMaquina();
-        }
-    }
-}
-
-    */
 
 const $botonEmpezar = document.querySelector("#boton-empezar");
 let turno = 0;
@@ -39,9 +7,10 @@ let secuenciaJugador = [];
 let secuenciaMaquina = [];
 
 $botonEmpezar.onclick = function(){
+    reiniciarParametros();
     administrarTurnoMaquina();
     $botonEmpezar.disabled = true;
-    //probablemente deshabilitar botones 
+    
 }
 
 function mostrarNumeroTurno(){
@@ -50,10 +19,13 @@ function mostrarNumeroTurno(){
 
 function mostrarEstadoJuego(esQuePerdio){
     const $estado = document.querySelector("#estado")
+    $estado.className="alert alert-primary"
 
     if (esQuePerdio){
-        $estado.textContent = `Perdiste en el turno ${turno}`
+        $estado.textContent = `Perdiste en el turno ${turno}. Tocá empezar para reiniciar el juego`
+        $estado.className="alert alert-danger"
     } else if (esTurnoJugador){
+
         $estado.textContent = "Es tu turno"
     } else if (!esTurnoJugador){
         $estado.textContent = "Es turno de la máquina"
@@ -62,7 +34,6 @@ function mostrarEstadoJuego(esQuePerdio){
 
 function administrarTurnoMaquina(){
 
-    bloquearCuadros();
     turno++;
     esTurnoJugador=false;
     mostrarEstadoJuego();
@@ -121,6 +92,7 @@ function administrarTurnoJugador (){
             }
 
             if (secuenciaJugador.length === secuenciaMaquina.length){
+                bloquearCuadros();
                 setTimeout(function(){
                     administrarTurnoMaquina();
                 }, 1000);
@@ -133,6 +105,8 @@ function administrarTurnoJugador (){
 function perder(){
     mostrarEstadoJuego(true);   
     bloquearCuadros();
+    $botonEmpezar.disabled=false;
+
 }
 
 function bloquearCuadros(){
@@ -143,4 +117,11 @@ function bloquearCuadros(){
 
         }
     }) 
+}
+
+function reiniciarParametros(){
+    turno = 0;
+    esTurnoJugador = false;
+    secuenciaJugador = [];
+    secuenciaMaquina = [];
 }
