@@ -74,10 +74,12 @@ function administrarTurnoJugador (){
     contadorClicks = 0;
     esTurnoJugador=true;
 
+
     mostrarEstadoJuego();
     mostrarNumeroTurno();
         
     $cuadros.forEach(function($cuadro){
+        $cuadro.style.cursor= "pointer";
         $cuadro.onclick=function(){
             contadorClicks++;
             resaltarCuadro($cuadro);
@@ -111,6 +113,7 @@ function perder(){
 function bloquearCuadros(){
 
     $cuadros.forEach(function($cuadro){
+        $cuadro.style.cursor= "";
         $cuadro.onclick=function(){
 
         }
