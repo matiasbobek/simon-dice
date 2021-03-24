@@ -1,6 +1,7 @@
 
 
 const $botonEmpezar = document.querySelector("#boton-empezar");
+const $cuadros = document.querySelectorAll('[name=cuadros]')
 let turno = 0;
 let esTurnoJugador = false;
 let secuenciaJugador = [];
@@ -56,7 +57,7 @@ function administrarTurnoMaquina(){
 }
 
 function elegirCuadradoAleatorio(){
-    const $cuadros = document.querySelectorAll('[name=cuadros]')
+
     let numeroAleatorio = Math.floor(Math.random()*$cuadros.length);
     return $cuadros[numeroAleatorio];
 }
@@ -75,9 +76,7 @@ function administrarTurnoJugador (){
 
     mostrarEstadoJuego();
     mostrarNumeroTurno();
-    
-    const $cuadros = document.querySelectorAll('[name=cuadros]');
-    
+        
     $cuadros.forEach(function($cuadro){
         $cuadro.onclick=function(){
             contadorClicks++;
@@ -111,7 +110,6 @@ function perder(){
 
 function bloquearCuadros(){
 
-    const $cuadros = document.querySelectorAll('[name=cuadros]');
     $cuadros.forEach(function($cuadro){
         $cuadro.onclick=function(){
 
