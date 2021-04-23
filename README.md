@@ -1,5 +1,5 @@
 # Simon-Dice
-Ejemplo de juego Simon Dice reconstruido desde cero partiendo del ejemplo del repositorio "forkiado" de r/Argentina programa
+Ejemplo de juego Simon Dice reconstruido desde cero partiendo del ejemplo del repositorio forkeado de r/Argentina programa
 
 ## Probar online
 
